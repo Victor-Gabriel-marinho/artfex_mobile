@@ -1,101 +1,144 @@
-import { StyleSheet, Text, View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, ScrollView, registerCallableModule, Linking, } from 'react-native';
+import { Link, NavigationContainer } from '@react-navigation/native';
+
 
 export default function App(){
   return (
-    <KeyboardAvoidingView style = {styles.background}>
-      <View style = {styles.logo}>
-        <Image
-        style = {styles.img}
-        source = {require('./assets/logo-svg.png')}
-        />
-      </View>
-
-      <View style = {styles.inputs_container}>
-        <TextInput
-        style = {styles.inputs}
-        placeholder='Email'
-        autoCorrect={false}
-        onChangeText={() => {}}
-        />
-
-        <TextInput
-        style = {styles.inputs}
-        placeholder='Senha'
-        autoCorrect={false}
-        onChangeText={() => {}}
-        />
-
-        <TouchableOpacity style = {styles.btn_submit}>
-          <Text style = {styles.submit_text}>
-            Acessar
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style = {styles.btn_register}>
-          <Text style = {styles.submit_text}>
-            Criar conta
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-    </KeyboardAvoidingView>
+    <NavigationContainer>
+      <KeyboardAvoidingView style = {styles.background}>
+      
+        <View style = {styles.main}>
+          <View style = {styles.logo}>
+            <Image
+            style = {styles.img}
+            source = {require('./assets/logo-svg.png')}
+            />
+          </View>
+          <View style = {styles.title}>
+            <Text style = {styles.tt} >
+              Faça seu login
+            </Text>
+          </View>
+          <View style = {styles.inputs_container}>
+            <TextInput
+            style = {styles.inputs}
+            placeholder='Email'
+            autoCorrect={false}
+            onChangeText={() => {}}
+            />
+            <TextInput
+            style = {styles.inputs}
+            placeholder='Senha'
+            autoCorrect={false}
+            onChangeText={() => {}}
+            />
+            <TouchableOpacity style = {styles.btn_submit}>
+              <Text style = {styles.submit_text}>
+                Acessar
+              </Text>
+            </TouchableOpacity>
+            <View style = {styles.line}>
+            </View>
+            <Text>
+              Não tem uma conta ?
+              <Link style = {styles.btn_register}>
+                <Text style = {styles.register_text}>
+                  Clique aqui
+                </Text>
+              </Link>
+            </Text>
+          </View>
+        </View>
+      </KeyboardAvoidingView>
+    </NavigationContainer>
   )
 
 }
 
 
 const styles = StyleSheet.create({
+  main : {
+    display: 'flex',
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    flexDirection: 'column',
+  
+  },
   background:{
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#F2994B'
+  },
+  tt: {
+    color: "#082621",
+    fontSize: 30,
+  },
+  title:{
+    width: '80%',
+    height: '8%',
+    display: 'flex',
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   logo:{
-    flex: 1,
+    display: 'flex',
     justifyContent: 'center',
-
+    alignItems: 'center',
+    width: '30%',
+    height: '18%',
+    borderRadius: 10,
+    backgroundColor: '#F2994B',
   },
   inputs_container:{
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    width: '90%',
-    marginTop: -100,
+    width: '80%',
+    height: '40%',
   },
   img:{
-    width: 210,
-    height: 250,
+    width: 80,
+    height: 100,
+    tintColor: 'white',
   },
   inputs:{
-    backgroundColor: '#FFF',
-    width: '90%',
-    marginBottom: '15',
-    color: '#222',
+    width: '100%',
+    marginBottom: '30',
     fontSize: 17,
-    borderRadius: 20,
     padding: 10,
-  },
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    },
   btn_submit:{
-    backgroundColor: '#3F8B3C',
-    width: '90%',
+    backgroundColor: '#F2994B',
+    width: '100%',
     alignItems: 'center',
     height: 45,
     justifyContent: 'center',
-    borderRadius: 20,
+    borderRadius: 10,    
   },
   submit_text:{
     color: '#FFF',
     fontSize: 17,
   },
   btn_register:{
-    marginTop: 10,
-    backgroundColor: '#F2541D',
-    width: '90%',
-    alignItems: 'center',
-    height: 45,
-    justifyContent: 'center',
-    borderRadius: 20,
+  
   },
+  register_text: {
+    color: '#F2994B',
+    fontSize: 16,
+  },
+  line: {
+
+    borderBottomWidth: 1,
+    display: 'flex',
+    width: '100%',
+    height: '15%',
+    borderBottomColor: '#ccc',
+
+  }
 
 })
